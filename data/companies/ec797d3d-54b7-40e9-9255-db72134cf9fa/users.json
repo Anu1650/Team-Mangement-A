@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ad8ee41f-e46a-4fa4-8b07-80a037f673d8",
+    "email": "aniketigade@gmail.com",
+    "fullName": "Aniket Ramling Igade",
+    "position": "CEO",
+    "password": "$2a$10$3L6Evua6Wx60/S8mmFK9oOTawKHpr0fGQvciHjyDXTaiENPxaIo7y",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2026-02-17T14:05:36.903Z",
+    "lastLogin": "2026-02-18T13:13:36.870Z",
+    "lastActive": "2026-02-18T16:32:35.627Z"
+  },
+  {
+    "id": "16ceb406-1c56-4dfd-9320-18d4453303f5",
+    "email": "igadeaniket@gmail.com",
+    "fullName": "Aniket Ramling Igade",
+    "position": "Developer",
+    "password": "$2a$10$YPYZtpEpxznvJQLOPD8RzuD2sfYwmEq5mW2.eC6gjXsjEjqV4bGyK",
+    "role": "member",
+    "status": "active",
+    "createdAt": "2026-02-17T14:06:39.778Z",
+    "lastLogin": "2026-02-18T12:52:23.757Z",
+    "lastActive": "2026-02-18T12:52:23.757Z"
+  },
+  {
+    "id": "3f2bc97e-1b65-4a3f-b100-814e63debd1c",
+    "email": "shubhambodake4330@gmail.com",
+    "fullName": "Shubham Bodake",
+    "position": "CEO",
+    "password": "$2a$10$Jo1kZAzha83jySxhL/R6eufFj6ln54yeFYq41FetRIZ4PecX9BwJq",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2026-02-18T16:25:43.457Z",
+    "lastLogin": "2026-02-18T16:29:24.790Z",
+    "lastActive": "2026-02-18T16:32:29.620Z"
+  }
+]

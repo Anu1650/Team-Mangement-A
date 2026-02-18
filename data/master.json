@@ -1,0 +1,25 @@
+{
+  "companies": [
+    {
+      "id": "bf8490ee-06ce-40d3-94d3-82efcfbfa7a7",
+      "companyName": "GP",
+      "companyCode": "ZQZ894276",
+      "slug": "gp",
+      "email": "aniketigade816@gmail.com",
+      "createdAt": "2026-02-17T13:54:04.290Z"
+    },
+    {
+      "id": "ec797d3d-54b7-40e9-9255-db72134cf9fa",
+      "companyName": "GPS",
+      "companyCode": "HUT240027",
+      "slug": "gps",
+      "email": "aniketigade@gmail.com",
+      "createdAt": "2026-02-17T14:05:36.726Z"
+    }
+  ],
+  "stats": {
+    "totalCompanies": 2,
+    "totalUsers": 1,
+    "createdAt": "2026-02-17T13:04:42.235Z"
+  }
+}

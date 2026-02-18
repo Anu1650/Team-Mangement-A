@@ -1,0 +1,13 @@
+[
+  {
+    "id": "26f4ffb0-57fd-40b6-8a08-ada0cc683369",
+    "email": "aniketigade816@gmail.com",
+    "fullName": "Aniket Ramling Igade",
+    "position": "CEO",
+    "password": "$2a$10$7znFfJt9X5xi0VYXmGxDSewhZhXe/q4GfkM9UgXd3ZmbOJ6hfbxgi",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2026-02-17T13:54:04.522Z",
+    "lastLogin": null
+  }
+]

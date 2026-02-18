@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Admin Dashboard | ProjectPulse AI</title>
+    
+    <!-- Favicon - ProjectPulse AI Logo -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA35JREFUWEetl0toFGUYx3/fzO7O7uwm2U2zaRoatA1qFVq0kF6KF1A8KHgTPCh4KXgQvCh4UfAiFAUBQVAvFcFbpVi12gZsqUih2l6stJC2ySZNs7ub3c3OfM9/s5vdzG52d8P6h+Ewz3d7f8/7f8/7Pu8H/ucQ/jPgc0XjctD51/vUML8BoJVSqqcoqo9lWf2VUmlVVO8BfVpK7P+E/lcBXT05nI4d6vFy4UMsyzIymUx7NBr9zDTN8wA7gY1KqYuZTOb3ZDL5OcC2lhqUZbUHmAR2KqUe5PP532Kx2NcAbVZjs1HXl0qlZ7PZ7I0VK1a85nmet2XLlg+Ac4vWZwvwF8DBRqOj0WiP7/sX2tvbj3ieZ/f29r4FjC1VwH8F8DwvnM/n/+zu7n7fNE2rq6vrE+DS/0KAVQFM07R838/lcrm9wNdaa61pmnY4HD4IfL9UAv8UoK2t7Vkul3vQaDQ+lWU5vH79+o+Bq1rr+ZoQIWvtE2DfUgk0BaBUKg1ms9nbq1atOmIYhjU4OPgJcHMRglrrCeCdpRJoCqCUygB7hBDxcrn8w8DAwAeO4+jBwcHvgb+01n6j0QoAz5dK4f8CBINBLMsqF4vFbw3D0EKIyNatW48C55VSSmvtNxr1gSX/J2AJMBwOh4dKpdLzcrn8BeC3t7cfAf4E7i7wqGftUUrVm/2vSgBwN2zY8FI+nz9XKpVOaK2dQCDwAbVYvwJ8YVnWg1Kp9FQkEtnd09NzXEp5bWpq6hzAunXrVgC31q1bNwys0VpPr1279qNSqXShXC6/q7W2e3p6DgF/WJZVKZVKd9ra2t6zLMuqVCrTqVTqK+CFZVnFYrH4UyAQeMu27UAoFDoI/GpZ1uNSqfR3MBh8y7IsWSqVppPJ5BeGYcihoaF9wB+WZf1dKpV+DQQC+23bNnK53N2pqakjwLplA1y7di2Vz+cPFAqFqUAg8KbW2l23bt2HwO9SynvZbPZUIBB4y3VdwzRNz3Xd05ZlGc3CH2h0B6WU+fl8/pZt2/tc1zU9z3NnZmbOZDKZE1LKVa2trcOWZdXr/cFg8BXbtg3P82ZmZmbOZrPZE1LKvtra2h2WZUmA6enpC8Fg8C3XdU3P8+zZ2dnL2Wz2eyllVzgc3iWEGAfmA4FAoM+2bcO27dl0On0xm81+L6Xsli3MMYRCIaGUyuRyucu2be9zXdf0PM+enZ29nM1mv5dSdkcikXeFEGOtra2bgi3MEQqFhOu6pZxKpX61bXuf67qm67p2JpO5kM1mT0gpI+3t7duFEGNtbW0bgy3MMRwOC6WUlc/nb9u2vdd1XdN1XSedTv+SzWZPSClXt7e3Dwshxtra2gZaK2E4HBZKKSufz9+2bXuP67qm4zheOp2+mM1mT0opI+3t7W8JIcba2to2tFbC/wH+AbQff33j5Fb3AAAAAElFTkSuQmCC">
+    <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAkpJREFUOE+lU0toU0EUPXOzaVObFgxWK41aKkoVdSGC4MqFGxcu3LhwI7hQ0I0rFy5cCIILFy4EQVy4EEQQBEXBjYKiFq0IilpFa61JmybN4/veJE2bvE5C2wMf8zHz3j1z7r1vBvA/p/A3wW0y4dXzfNp1q2OO0/sS2H8a2P7N+H6AF0K0V+T0MwB3AUxGItFm4O0K0hU1gBkAvQB6o9HozUQicS0ajV6KxWLdgUDAi8VidwC8qDH0EkCvYRgL2Wz2RTwev2TbtjU2NvYAwM/aBicA9BmG8TWbzT5LJBKXHcdpTSaTdwD8Wq4yD2AQQD+AWi6Xe5ZKpS4qpbqy2ex9AD+rCf4GMAxgAMByLpd7mU6nLyqlDmaz2QcAflQR/ArgKYBhAOV8Pv9mZmamL5FI9JRKpQczMzOPAPxYIvgGwAiAEQDlQqHwNp1O9yWTSa9QKDycmZl5DOD7IsEkgNcARgGUC4XC23Q63ZdKpSqFQuFhNpt9DODbAsEPAG8AjAFQhULhbTqd7kulUqJQKDzMZrOPAXxdIPgF4C2AcQCqWCi8S6fTfclUShSLxUfZbPYJgM8LBH8AeAtgAoASxWJxPp1O96VSKVEqlaay2exjAJ8WCP4C8A7AJIByqVSaT6fTfT6fT5TL5fepVOoJgE8LBKsA3gP4AEAuFW5jY+MAVgF8APARgFwun8/n8/2nUilRLpcnU6nUJICPCwRrAH4BmANQLpfL8/n8fV8qlVClUvmdSqUmAXxYJ1gH8BvAPIClUqk8n0qlfX6/X2iaVs5kMh8ymcxTAO/XEawDqAD4DWC+XC7Pp1Ipn23bolarVfL5/Hwmk3kK4F2dwFqNq5VKZT6VSvls2xa1Wq2Sz+fnM5nMUwDv1gSsUOzaZrVa9fl8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz/f/8A9bA+R+mLIIVAAAAABJRU5ErkJggg==">
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABVVJREFUaEPtmW1oVWUYx3/3nJ3pXHtrbrncZfYy14ciIiuQggpKKAqKPoSCUVAQBRV90KcI8kMURUEQ9CGCoO9BUUFRRgVShH1wTbemW26W61y2ue7c7m6vp3vPuc5zns627p57iAP3wznnPM9z7v/1v/7Pc57nORr8j4f2f7z+P7l8zQPQarW6RCIxPTg4eK9pmg3Nzc0bNE2bikajZzVNS6nV6gMAWn19fQDA1NTU9L59+54RQui6rnd2dr4I4Fy1A9R0gI6Ojh3JZPLj+vr6N3VdN5qamt4BcH58fPwtrWw6RkdHXwHwxR1F0+l03NLSEk4kEueDweCzTU1N7wI4d60CqDlAIpFYB2C3pmnxTqfz3Xg8fr6lpaWttbX1QwDn5ufnFwC0mKZZTyQSU7lc7nggEHjDNE2jvb39QwDn0un0Yl1d3XNCCF3TtOlYLHY4HA6/bdu2rq7uNQATmqYtZLPZI52dnW+Zpqnrur5m9+7dH5fL5fz4+PiL5Qqk0+k4wBkA7UIIEYvFjodCobdN09R1XV+zZ8+ej8rl8p/x8fHufw9gmiYAhBDCarV+F4lE3jQMQ9d1XW9ubn4PwJ9jY2N7/i4wPj6+E8BpAFq1AL1e72cikUhbqVSqaJpWbG5u/hDAqZGRkb0A4vF43M/n+71er5umaWqaVhJCmJ2dne8DODk8PLwvHo/H/X6/3+v1ummamqYVhRBaV1fXewBODA8P749EIqFgMOj1er1umqamaUUhRLGzs/NdACdGRkZei0ajwWAw4PV6vW6apqZpRSGE1dXVtR/AiZGRkTei0WgoFAp4vV6vm6apaVpRCFHs6up6B8CJ0dHRt6LRaDgcDnq9Xq+bpqlpWlEIYXd3d78N4MTo6Ojb0Wg0EomEvF6v101T07SiEMLu6enZBuDE6OjoO9FoNBqNRrxer9dNU9O0ohCisbPzbQAnxsbG3hVCxGKxmNfr9bppappWFELYPb29WwH8ND4+vk8IEYvFYl6v1+umqWlaUQhh9/b2bgHw08TExD4hRCwWi3m9Xq+bpqZpRSGE3dfXtxnAzxMTE+8JIWKxWMzr9XrdNDVNKwoh7P7+/k0AftY0bZ8Qwo7FYl6v1+umqWlaUQhhDwxs3AjgF03T3hdC2LFYzOv1et00NU0rCiHswcHBDQB+1TTtAyGEHYvFvF6v101T07SiEMIeGhpaD+BXTdM+FELYsVjM6/V63TQ1TSsKIeyhoaF1AH7TNO1DIYQdi8W8Xq/XTVPTtKIQwh4eHl4L4Lhpmh8JIexYLKZpWtHr9XrdNDVNKwoh7JGREQDHLcvaL4SwY7FYLBqNet00NU0rCiHskZERAMdN0/xICGHHYrFYLNYGYFJrcQbGx8d3ApgEsNq27c+i0ehrpmmKQCCwTggxPTc3920gEHhD1/WSpmnG+vXrP5JS/jE9Pf0FgA4hREnTNH39+vUfSSnPzczMfA2gUwihhBDmzMzM10KIk7ZtNwP4p1wuzwOYXbVq1VtCCHPTpk3bAZybm5v72maz2U3TNFdN09Q0rSSlNLq6uvYDOD8/P/9NOBx+07Ztva2t7X0AF2zbLpmm2eT1es9PTU19ZVnW/UKILy3L+t62bW16enon/ymFQqGfhRCRFStWvC6E0DRNM/r7+78ql8v54eHhV5YjEI/HVwO4pGlaXgjR2NjY5nK5nBseHn5F07S8EGI5gGg0+r8A/gWzB3N+yt6a2gAAAABJRU5ErkJggg==">
+    
+    <!-- Alternative favicon using SVG (modern browsers) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z' fill='%23137fec'/%3E%3C/svg%3E">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .chat-message {
+            max-width: 80%;
+            border-radius: 18px;
+            padding: 12px 16px;
+            position: relative;
+        }
+        .chat-message.user {
+            background: #137fec;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-message.ai {
+            background: #f1f5f9;
+            color: #1e293b;
+            border-bottom-left-radius: 4px;
+        }
+        #aiChat {
+            scroll-behavior: smooth;
+        }
+        #aiChat::-webkit-scrollbar {
+            width: 6px;
+        }
+        #aiChat::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        #aiChat::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .online-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .offline-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+            background-color: #9ca3af;
+        }
+        .field-error {
+            border-color: #ef4444 !important;
+        }
+        .error-text {
+            color: #ef4444;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        .send-btn {
+            background: linear-gradient(135deg, #137fec 0%, #10b981 100%);
+            transition: all 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+        .send-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px #137fec;
+        }
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .employees-table {
+            contain: content;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Add Employee Modal - Optimized -->
+    <div id="addEmployeeModal" class="modal">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-primary to-secondary p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-2xl">mail</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Invite Team Member</h3>
+                            <p class="text-white/80 text-sm">Send invitation email</p>
+                        </div>
+                    </div>
+                    <button onclick="closeAddModal()" class="text-white/80 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="addEmployeeForm" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Full Name <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="addName" required
+                           class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                           placeholder="John Doe">
+                    <div id="nameError" class="error-text">Full name is required</div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Email <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="addEmail" required
+                           class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                           placeholder="john@company.com">
+                    <div id="emailError" class="error-text">Valid email is required</div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Position <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="addPosition" required
+                           class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                           placeholder="Software Engineer">
+                    <div id="positionError" class="error-text">Position is required</div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Role</label>
+                    <select id="addRole" 
+                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                        <option value="member">Team Member</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <!-- Simple preview -->
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">📧 Email Preview</h4>
+                    <div class="text-sm space-y-1" id="previewContent">
+                        <div>To: <span id="previewEmail" class="font-mono">email@company.com</span></div>
+                        <div>Code: <span id="previewCompanyCode" class="font-mono text-primary font-bold"></span></div>
+                        <div>Position: <span id="previewPosition">Software Engineer</span></div>
+                        <div>Role: <span id="previewRole">member</span></div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t">
+                    <button type="button" onclick="closeAddModal()" 
+                            class="px-5 py-2.5 text-gray-600 hover:text-gray-800 rounded-lg hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="submit" id="sendInviteBtn" disabled
+                            class="send-btn px-6 py-2.5 bg-primary text-white font-medium rounded-lg flex items-center gap-2 disabled:opacity-50">
+                        <span class="material-symbols-outlined text-sm">send</span>
+                        <span id="sendBtnText">Send Invitation</span>
+                        <div id="sendBtnSpinner" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Employee Modal -->
+    <div id="editEmployeeModal" class="modal">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Edit Team Member</h3>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="editEmployeeForm" class="space-y-4">
+                <input type="hidden" id="editId">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                    <input type="text" id="editName" required
+                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <input type="email" id="editEmail" required
+                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Position *</label>
+                    <input type="text" id="editPosition" required
+                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                    <select id="editRole" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                        <option value="member">Team Member</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <select id="editStatus" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="pt-4 flex justify-end gap-3">
+                    <button type="button" onclick="closeEditModal()" 
+                            class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b px-6 h-16 flex items-center justify-between sticky top-0 z-50 shadow-sm">
+        <div class="flex items-center gap-2">
+            <div class="size-8 text-primary">
+                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <span class="text-lg font-bold text-primary">ProjectPulse AI - Admin</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-sm text-gray-600" id="userName"></span>
+            <button onclick="logout()" class="text-sm text-primary hover:text-primary/80">Logout</button>
+        </div>
+    </nav>
+
+    <main class="p-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Welcome Section -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold">Welcome, <span id="userName"></span>!</h1>
+                <p class="text-gray-500">Manage your team and company settings</p>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm text-gray-500">Company</h3>
+                        <span class="material-symbols-outlined text-primary">business</span>
+                    </div>
+                    <p class="text-xl font-bold" id="companyName"></p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm text-gray-500">Your Role</h3>
+                        <span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+                    </div>
+                    <p class="text-xl font-bold" id="userRole"></p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm text-gray-500">Company Code</h3>
+                        <span class="material-symbols-outlined text-primary">qr_code</span>
+                    </div>
+                    <p class="text-xl font-bold text-primary font-mono" id="companyCode"></p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm text-gray-500">Online Now</h3>
+                        <span class="material-symbols-outlined text-green-500">wifi</span>
+                    </div>
+                    <p class="text-xl font-bold" id="onlineCount">0</p>
+                </div>
+            </div>
+            
+            <!-- Company Details -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border mb-8">
+                <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">info</span>
+                    Company Details
+                </h2>
+                <div id="companyDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <p>Loading...</p>
+                </div>
+            </div>
+            
+            <!-- Employee Management Section -->
+            <div id="employeeSection" class="bg-white p-6 rounded-xl shadow-sm border mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-lg font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">group</span>
+                            Team Members
+                        </h2>
+                        <p class="text-sm text-gray-500 mt-1">
+                            <span id="onlineCount2">0</span> online · <span id="totalEmployees">0</span> total
+                        </p>
+                    </div>
+                    <button onclick="showAddModal()" class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">
+                        <span class="material-symbols-outlined text-sm">person_add</span>
+                        Invite Member
+                    </button>
+                </div>
+                
+                <!-- Employees Table -->
+                <div class="overflow-x-auto employees-table">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name & Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeesTable" class="divide-y"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- AI Assistant Section -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold flex items-center gap-2">
+                        <span class="text-green-500">🤖</span>
+                        AI Assistant
+                    </h2>
+                    <div class="flex items-center gap-2">
+                        <select id="aiModel" class="text-sm px-3 py-1.5 border rounded-lg bg-white">
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                            <option value="gpt-4">GPT-4</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="aiChat" class="h-96 overflow-y-auto mb-4 space-y-4 p-4 bg-gray-50 rounded-lg">
+                    <!-- Initial AI message -->
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                            <span class="text-white text-sm">AI</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <p class="text-sm text-gray-900">Hello! I'm your ProjectPulse AI assistant. I can help you manage your team and see real-time online status.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="aiChatForm" class="flex gap-2">
+                    <input type="text" id="aiInput" placeholder="Ask me anything..." 
+                           class="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                           autocomplete="off">
+                    <button type="submit" class="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-medium rounded-lg hover:opacity-90 disabled:opacity-50" id="aiSubmitBtn">
+                        <span id="aiButtonText">Ask AI</span>
+                        <span id="aiLoading" class="hidden animate-spin ml-2">⟳</span>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border">
+                <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">bolt</span>
+                    Quick Actions
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <button onclick="showAddModal()" class="p-4 border rounded-lg text-left hover:bg-gray-50 transition">
+                        <span class="material-symbols-outlined text-primary mb-2">person_add</span>
+                        <h3 class="font-semibold">Invite Member</h3>
+                    </button>
+                    <button onclick="refreshTeamData()" class="p-4 border rounded-lg text-left hover:bg-gray-50 transition">
+                        <span class="material-symbols-outlined text-primary mb-2">refresh</span>
+                        <h3 class="font-semibold">Refresh Status</h3>
+                    </button>
+                    <button onclick="alert('Coming soon!')" class="p-4 border rounded-lg text-left hover:bg-gray-50 transition">
+                        <span class="material-symbols-outlined text-primary mb-2">analytics</span>
+                        <h3 class="font-semibold">Reports</h3>
+                    </button>
+                    <button onclick="alert('Coming soon!')" class="p-4 border rounded-lg text-left hover:bg-gray-50 transition">
+                        <span class="material-symbols-outlined text-primary mb-2">settings</span>
+                        <h3 class="font-semibold">Settings</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+        let currentUser = null;
+        let employees = [];
+        let aiChatHistory = [];
+        let statusInterval;
+        let validationTimer;
+
+        // Check authentication
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+            const userStr = localStorage.getItem('user');
+            
+            if (!token || !userStr) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                currentUser = JSON.parse(userStr);
+                
+                if (currentUser.role !== 'admin') {
+                    window.location.href = 'employee-dashboard.html';
+                    return;
+                }
+                
+                loadUserData();
+                loadEmployees();
+                startStatusUpdates();
+                startHeartbeat();
+            } catch (e) {
+                window.location.href = 'login.html';
+            }
+        })();
+
+        function loadUserData() {
+            document.getElementById('userName').textContent = currentUser.fullName || 'Admin';
+            document.getElementById('companyName').textContent = currentUser.companyName || 'N/A';
+            document.getElementById('userRole').textContent = 'Administrator';
+            document.getElementById('companyCode').textContent = currentUser.companyCode || 'N/A';
+            document.getElementById('previewCompanyCode').textContent = currentUser.companyCode || 'N/A';
+        }
+
+        // Start real-time status updates (every 10 seconds for more accurate online status)
+        function startStatusUpdates() {
+            loadEmployees(); // Initial load
+            statusInterval = setInterval(() => {
+                loadEmployees(true);
+            }, 10000); // Update every 10 seconds
+        }
+
+        // Start heartbeat
+        function startHeartbeat() {
+            setInterval(async () => {
+                try {
+                    await fetch(`${API_BASE}/api/user/heartbeat`, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                    });
+                } catch (error) {}
+            }, 30000); // Heartbeat every 30 seconds
+        }
+
+        // Manual refresh
+        function refreshTeamData() {
+            loadEmployees();
+        }
+
+        // Load employees with online status
+        async function loadEmployees(silent = false) {
+            const token = localStorage.getItem('token');
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/team`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Failed to load employees');
+                
+                const newEmployees = await res.json();
+                
+                // Check if data changed
+                const dataChanged = JSON.stringify(employees) !== JSON.stringify(newEmployees);
+                
+                employees = newEmployees;
+                
+                // Update counts
+                const onlineCount = employees.filter(emp => {
+                    const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
+                    return emp.lastActive ? new Date(emp.lastActive).getTime() > fiveMinutesAgo : false;
+                }).length;
+                
+                document.getElementById('totalEmployees').textContent = employees.length;
+                document.getElementById('onlineCount').textContent = onlineCount;
+                document.getElementById('onlineCount2').textContent = onlineCount;
+                
+                renderEmployeesTable();
+                
+                // If data changed, show subtle notification
+                if (dataChanged && !silent) {
+                    showNotification('Team data updated');
+                }
+                
+            } catch (error) {
+                console.error('Error loading employees:', error);
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // You can implement a toast notification here
+            console.log(message);
+        }
+
+        // Render employees table with online status
+        function renderEmployeesTable() {
+            const tbody = document.getElementById('employeesTable');
+            
+            if (employees.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-gray-500">No team members yet. Click "Invite Member" to get started.</td></tr>';
+                return;
+            }
+
+            const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
+            let html = '';
+            
+            for (const emp of employees) {
+                const isCurrentUser = emp.id === currentUser.id;
+                const isOnline = emp.lastActive ? new Date(emp.lastActive).getTime() > fiveMinutesAgo : false;
+                
+                // Status dot and text
+                const statusDot = isOnline ? 
+                    '<span class="online-dot bg-green-500"></span>' : 
+                    '<span class="offline-dot bg-gray-400"></span>';
+                
+                const statusText = isOnline ? 
+                    '<span class="text-green-600 text-xs font-medium">Online</span>' : 
+                    '<span class="text-gray-500 text-xs">Offline</span>';
+                
+                // Last active time
+                const lastActiveText = emp.lastActive ? 
+                    `<span class="text-xs text-gray-400 ml-2">${formatLastActive(emp.lastActive)}</span>` : 
+                    '';
+                
+                html += `<tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="relative flex-shrink-0 mr-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <span class="text-primary font-semibold">${emp.fullName?.charAt(0) || 'U'}</span>
+                                </div>
+                                <div class="absolute -bottom-1 -right-1">
+                                    ${isOnline ? 
+                                        '<span class="online-dot bg-green-500"></span>' : 
+                                        '<span class="offline-dot bg-gray-400"></span>'}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <p class="font-medium text-gray-900">${emp.fullName || 'N/A'}</p>
+                                    ${isCurrentUser ? '<span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">You</span>' : ''}
+                                </div>
+                                <div class="flex items-center mt-0.5">
+                                    ${statusDot}
+                                    <span class="text-xs ${isOnline ? 'text-green-600' : 'text-gray-500'}">${isOnline ? 'Online' : 'Offline'}</span>
+                                    ${lastActiveText}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">${emp.email || 'N/A'}</td>
+                    <td class="px-6 py-4 text-gray-600">${emp.position || 'N/A'}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 text-xs rounded-full ${emp.role === 'admin' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-700'} font-medium">
+                            ${emp.role || 'member'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 text-xs rounded-full ${emp.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'} font-medium">
+                            ${emp.status || 'active'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        ${!isCurrentUser ? `
+                            <div class="flex items-center gap-2">
+                                <button onclick="editEmployee('${emp.id}')" 
+                                        class="text-primary hover:text-primary/80 text-sm flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">edit</span>
+                                    Edit
+                                </button>
+                                <button onclick="deleteEmployee('${emp.id}', '${emp.fullName}')" 
+                                        class="text-red-500 hover:text-red-700 text-sm flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">delete</span>
+                                    Delete
+                                </button>
+                            </div>
+                        ` : '<span class="text-gray-400 text-sm">Current User</span>'}
+                    </td>
+                </tr>`;
+            }
+            
+            tbody.innerHTML = html;
+        }
+
+        // Format last active time
+        function formatLastActive(timestamp) {
+            if (!timestamp) return '';
+            
+            const last = new Date(timestamp);
+            const now = new Date();
+            const diffMs = now - last;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            if (diffMins < 1) return 'just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays < 7) return `${diffDays}d ago`;
+            
+            return last.toLocaleDateString();
+        }
+
+        // ========== INVITATION MODAL FUNCTIONS ==========
+        function showAddModal() {
+            document.getElementById('addEmployeeModal').classList.add('active');
+            document.getElementById('addName').focus();
+            updatePreview();
+            validateForm();
+        }
+
+        function closeAddModal() {
+            document.getElementById('addEmployeeModal').classList.remove('active');
+            document.getElementById('addEmployeeForm').reset();
+            clearErrors();
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-text').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(input => input.classList.remove('field-error'));
+        }
+
+        function updatePreview() {
+            document.getElementById('previewEmail').textContent = 
+                document.getElementById('addEmail').value || 'email@company.com';
+            document.getElementById('previewPosition').textContent = 
+                document.getElementById('addPosition').value || 'Software Engineer';
+            document.getElementById('previewRole').textContent = 
+                document.getElementById('addRole').value;
+        }
+
+        // Debounced validation
+        function debouncedValidate() {
+            clearTimeout(validationTimer);
+            validationTimer = setTimeout(validateForm, 150);
+        }
+
+        function validateForm() {
+            const name = document.getElementById('addName').value.trim();
+            const email = document.getElementById('addEmail').value.trim();
+            const position = document.getElementById('addPosition').value.trim();
+            
+            clearErrors();
+            
+            let isValid = true;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name) {
+                document.getElementById('addName').classList.add('field-error');
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!email) {
+                document.getElementById('addEmail').classList.add('field-error');
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                document.getElementById('addEmail').classList.add('field-error');
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('emailError').textContent = 'Invalid email';
+                isValid = false;
+            }
+            
+            if (!position) {
+                document.getElementById('addPosition').classList.add('field-error');
+                document.getElementById('positionError').style.display = 'block';
+                isValid = false;
+            }
+            
+            document.getElementById('sendInviteBtn').disabled = !isValid;
+            return isValid;
+        }
+
+        // Event listeners with debouncing
+        document.getElementById('addName').addEventListener('input', debouncedValidate);
+        document.getElementById('addEmail').addEventListener('input', () => {
+            debouncedValidate();
+            updatePreview();
+        });
+        document.getElementById('addPosition').addEventListener('input', () => {
+            debouncedValidate();
+            updatePreview();
+        });
+        document.getElementById('addRole').addEventListener('change', updatePreview);
+
+        // Submit invitation
+        document.getElementById('addEmployeeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            const btn = document.getElementById('sendInviteBtn');
+            const btnText = document.getElementById('sendBtnText');
+            const spinner = document.getElementById('sendBtnSpinner');
+            
+            btn.disabled = true;
+            btnText.textContent = 'Sending...';
+            spinner.classList.remove('hidden');
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/team/create-employee`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: document.getElementById('addEmail').value.trim(),
+                        fullName: document.getElementById('addName').value.trim(),
+                        position: document.getElementById('addPosition').value.trim(),
+                        role: document.getElementById('addRole').value
+                    })
+                });
+                
+                const data = await res.json();
+                
+                if (res.ok) {
+                    alert(`✅ Invitation sent successfully to ${document.getElementById('addEmail').value}!`);
+                    closeAddModal();
+                    loadEmployees(); // Refresh the list immediately
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to send'));
+                }
+            } catch (error) {
+                alert('Network error. Please try again.');
+            } finally {
+                btnText.textContent = 'Send Invitation';
+                spinner.classList.add('hidden');
+            }
+        });
+
+        // ========== EDIT EMPLOYEE FUNCTIONS ==========
+        function editEmployee(id) {
+            const emp = employees.find(e => e.id === id);
+            if (!emp) return;
+            
+            document.getElementById('editId').value = emp.id;
+            document.getElementById('editName').value = emp.fullName || '';
+            document.getElementById('editEmail').value = emp.email || '';
+            document.getElementById('editPosition').value = emp.position || '';
+            document.getElementById('editRole').value = emp.role || 'member';
+            document.getElementById('editStatus').value = emp.status || 'active';
+            
+            document.getElementById('editEmployeeModal').classList.add('active');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editEmployeeModal').classList.remove('active');
+            document.getElementById('editEmployeeForm').reset();
+        }
+
+        document.getElementById('editEmployeeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const id = document.getElementById('editId').value;
+            const role = document.getElementById('editRole').value;
+            const status = document.getElementById('editStatus').value;
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.innerHTML = '<div class="loading-spinner rounded-full h-5 w-5 border-b-2 border-white mx-auto"></div>';
+            
+            try {
+                const token = localStorage.getItem('token');
+                
+                // Update role
+                await fetch(`${API_BASE}/api/team/${id}/role`, {
+                    method: 'PUT',
+                    headers: { 
+                        'Authorization': `Bearer ${token}`, 
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify({ role })
+                });
+                
+                // Update status
+                await fetch(`${API_BASE}/api/team/${id}/status`, {
+                    method: 'PUT',
+                    headers: { 
+                        'Authorization': `Bearer ${token}`, 
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify({ status })
+                });
+                
+                alert('✅ Team member updated successfully!');
+                closeEditModal();
+                loadEmployees(); // Refresh the list to show updated info
+                
+            } catch (error) {
+                console.error('Error updating member:', error);
+                alert('Failed to update team member');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        });
+
+        function deleteEmployee(id, name) {
+            if (!confirm(`Are you sure you want to remove ${name} from the team?`)) return;
+            
+            fetch(`${API_BASE}/api/team/${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert(`✅ ${name} removed successfully`);
+                    loadEmployees(); // Refresh the list
+                } else {
+                    alert('Failed to remove team member');
+                }
+            })
+            .catch(() => alert('Network error'));
+        }
+
+        // ========== AI ASSISTANT FUNCTIONS ==========
+        document.getElementById('aiChatForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const input = document.getElementById('aiInput');
+            const question = input.value.trim();
+            
+            if (!question) return;
+            
+            // Add user message
+            addUserMessage(question);
+            input.value = '';
+            
+            // Show loading
+            setAILoading(true);
+            
+            try {
+                setTimeout(() => {
+                    const responses = [
+                        "I can help you manage your team. Currently there are " + employees.length + " team members, with " + document.getElementById('onlineCount').textContent + " online now.",
+                        "Team members with 'Admin' role can also invite others and manage settings.",
+                        "The online status updates every 10 seconds, showing who's actively using the dashboard.",
+                        "When you edit a team member's information, it updates immediately in both admin and employee panels."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addAIResponse(randomResponse, 'gpt-3.5-turbo');
+                    setAILoading(false);
+                }, 800);
+                
+            } catch (error) {
+                addAIError(error.message);
+                setAILoading(false);
+            }
+        });
+
+        function addUserMessage(message) {
+            const chatContainer = document.getElementById('aiChat');
+            const messageHTML = `
+                <div class="flex justify-end">
+                    <div class="max-w-[80%]">
+                        <div class="bg-primary text-white p-4 rounded-lg rounded-tr-none">
+                            <p class="text-sm">${escapeHTML(message)}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-gray-500 mt-1">You • ${new Date().toLocaleTimeString()}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            chatContainer.insertAdjacentHTML('beforeend', messageHTML);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            aiChatHistory.push({ role: 'user', content: message });
+        }
+
+        function addAIResponse(response, model) {
+            const chatContainer = document.getElementById('aiChat');
+            
+            const messageHTML = `
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                        <span class="text-white text-sm">AI</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <p class="text-sm text-gray-900">${escapeHTML(response)}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-xs text-gray-500">AI Assistant • ${model}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            chatContainer.insertAdjacentHTML('beforeend', messageHTML);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            aiChatHistory.push({ role: 'assistant', content: response });
+        }
+
+        function addAIError(errorMessage) {
+            const chatContainer = document.getElementById('aiChat');
+            const messageHTML = `
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-white text-sm">error</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <p class="text-sm text-red-700">
+                                <strong>Error:</strong> ${escapeHTML(errorMessage)}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            chatContainer.insertAdjacentHTML('beforeend', messageHTML);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function setAILoading(loading) {
+            const input = document.getElementById('aiInput');
+            const submitBtn = document.getElementById('aiSubmitBtn');
+            const buttonText = document.getElementById('aiButtonText');
+            const loadingSpinner = document.getElementById('aiLoading');
+            
+            input.disabled = loading;
+            submitBtn.disabled = loading;
+            
+            if (loading) {
+                buttonText.textContent = 'Thinking...';
+                loadingSpinner.classList.remove('hidden');
+            } else {
+                buttonText.textContent = 'Ask AI';
+                loadingSpinner.classList.add('hidden');
+                input.focus();
+            }
+        }
+
+        function clearAIChat() {
+            const chatContainer = document.getElementById('aiChat');
+            const initialMessage = chatContainer.querySelector('.flex.items-start:first-child');
+            chatContainer.innerHTML = '';
+            if (initialMessage) {
+                chatContainer.appendChild(initialMessage);
+            }
+            aiChatHistory = [];
+        }
+
+        document.getElementById('aiModel').addEventListener('change', (e) => {
+            document.getElementById('aiModelInfo').textContent = e.target.selectedOptions[0].text;
+        });
+
+        function escapeHTML(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+
+        // Clean up
+        window.addEventListener('beforeunload', () => {
+            if (statusInterval) clearInterval(statusInterval);
+        });
+    </script>
+</body>
+</html>
