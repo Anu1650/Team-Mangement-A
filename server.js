@@ -24,6 +24,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Helper function to get base URL dynamically
+function getBaseUrl(req) {
+    // Check if we're in production (Render) or development
+    if (process.env.NODE_ENV === 'production') {
+        // For Render, use the environment variable or construct from request
+        return process.env.RENDER_EXTERNAL_URL || `${req.protocol}://${req.get('host')}`;
+    }
+    return `http://localhost:${PORT}`;
+}
+
 // Directory structure
 const DATA_DIR = path.join(__dirname, 'data');
 const MASTER_FILE = path.join(DATA_DIR, 'master.json');
@@ -146,6 +156,26 @@ async function readCompanyInfo(companyId) {
     } catch (error) {
         return null;
     }
+}
+
+// Read company settings
+async function readCompanySettings(companyId) {
+    try {
+        const data = await fs.readFile(getCompanySettingsPath(companyId), 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        return {
+            timezone: 'UTC',
+            dateFormat: 'MM/DD/YYYY',
+            weekStartsOn: 'Monday',
+            updatedAt: new Date().toISOString()
+        };
+    }
+}
+
+// Write company settings
+async function writeCompanySettings(companyId, settings) {
+    await fs.writeFile(getCompanySettingsPath(companyId), JSON.stringify(settings, null, 2));
 }
 
 // ==================== CHAT HISTORY FUNCTIONS (By Username) ====================
@@ -308,7 +338,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Send OTP email
-async function sendOTPEmail(toEmail, otp, purpose) {
+async function sendOTPEmail(toEmail, otp, purpose, baseUrl) {
     const subject = purpose === 'registration' 
         ? 'Welcome to ProjectPulse AI - Verify Your Email' 
         : 'ProjectPulse AI - Password Reset OTP';
@@ -359,6 +389,64 @@ async function sendOTPEmail(toEmail, otp, purpose) {
     }
 }
 
+// Send invitation email
+async function sendInvitationEmail(email, fullName, tempPassword, companyCode, baseUrl) {
+    const subject = 'Welcome to ProjectPulse AI - Your Account Details';
+    
+    const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: #137fec; margin-bottom: 5px;">ProjectPulse AI</h1>
+                <p style="color: #666; font-size: 14px;">Engineering Intelligence Platform</p>
+            </div>
+            
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px;">
+                <h2 style="color: #333; margin-bottom: 10px;">Welcome to the team, ${fullName}!</h2>
+                <p style="color: #666; margin-bottom: 20px;">
+                    You've been invited to join ProjectPulse AI. Here are your login details:
+                </p>
+                
+                <div style="background-color: #fff; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                    <p style="margin: 5px 0;"><strong>Company Code:</strong> ${companyCode}</p>
+                    <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+                    <p style="margin: 5px 0;"><strong>Temporary Password:</strong> ${tempPassword}</p>
+                </div>
+                
+                <p style="color: #666; font-size: 14px;">
+                    Please login and change your password immediately.
+                </p>
+                
+                <div style="text-align: center; margin-top: 25px;">
+                    <a href="${baseUrl}/login.html" 
+                       style="background-color: #137fec; color: white; padding: 12px 30px; 
+                              text-decoration: none; border-radius: 5px; font-weight: bold;">
+                        Login to Your Account
+                    </a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #999; font-size: 12px;">
+                <p>&copy; 2026 ProjectPulse AI. All rights reserved.</p>
+                <p>This is an automated message, please do not reply.</p>
+            </div>
+        </div>
+    `;
+    
+    try {
+        await transporter.sendMail({
+            from: `"ProjectPulse AI" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: subject,
+            html: html
+        });
+        console.log(`✅ Invitation email sent to ${email}`);
+        return true;
+    } catch (error) {
+        console.error('❌ Error sending invitation:', error);
+        return false;
+    }
+}
+
 // Authentication middleware
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -390,6 +478,7 @@ function requireAdmin(req, res, next) {
 app.post('/api/otp/send', async (req, res) => {
     try {
         const { email, purpose } = req.body;
+        const baseUrl = getBaseUrl(req);
         
         if (!email || !purpose) {
             return res.status(400).json({ error: 'Email and purpose are required' });
@@ -444,7 +533,7 @@ app.post('/api/otp/send', async (req, res) => {
             createdAt: new Date().toISOString()
         });
         
-        const emailSent = await sendOTPEmail(email, otp, purpose);
+        const emailSent = await sendOTPEmail(email, otp, purpose, baseUrl);
         
         if (!emailSent) {
             return res.status(500).json({ error: 'Failed to send OTP email' });
@@ -881,6 +970,7 @@ app.post('/api/auth/login', async (req, res) => {
 app.post('/api/auth/forgot-password', async (req, res) => {
     try {
         const { email } = req.body;
+        const baseUrl = getBaseUrl(req);
         
         if (!email) {
             return res.status(400).json({ error: 'Email is required' });
@@ -911,7 +1001,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
             createdAt: new Date().toISOString()
         });
         
-        const emailSent = await sendOTPEmail(email, otp, 'password-reset');
+        const emailSent = await sendOTPEmail(email, otp, 'password-reset', baseUrl);
         
         if (!emailSent) {
             return res.status(500).json({ error: 'Failed to send OTP email' });
@@ -1138,6 +1228,7 @@ app.get('/api/team', authenticateToken, requireAdmin, async (req, res) => {
 app.post('/api/team/create-employee', authenticateToken, requireAdmin, async (req, res) => {
     try {
         const { email, fullName, position, role } = req.body;
+        const baseUrl = getBaseUrl(req);
         
         if (!email || !fullName || !position) {
             return res.status(400).json({ error: 'All fields are required' });
@@ -1168,8 +1259,8 @@ app.post('/api/team/create-employee', authenticateToken, requireAdmin, async (re
         users.push(newUser);
         await writeCompanyUsers(req.user.companyId, users);
         
-        // Send invitation email with temp password
-        await sendInvitationEmail(email, fullName, tempPassword, req.user.companyCode);
+        // Send invitation email with temp password and dynamic base URL
+        await sendInvitationEmail(email, fullName, tempPassword, req.user.companyCode, baseUrl);
         
         res.status(201).json({
             message: 'Team member created successfully',
@@ -1524,70 +1615,14 @@ function generateSecurePassword() {
     return password;
 }
 
-async function sendInvitationEmail(email, fullName, tempPassword, companyCode) {
-    const subject = 'Welcome to ProjectPulse AI - Your Account Details';
-    
-    const html = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h1 style="color: #137fec; margin-bottom: 5px;">ProjectPulse AI</h1>
-                <p style="color: #666; font-size: 14px;">Engineering Intelligence Platform</p>
-            </div>
-            
-            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px;">
-                <h2 style="color: #333; margin-bottom: 10px;">Welcome to the team, ${fullName}!</h2>
-                <p style="color: #666; margin-bottom: 20px;">
-                    You've been invited to join ProjectPulse AI. Here are your login details:
-                </p>
-                
-                <div style="background-color: #fff; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                    <p style="margin: 5px 0;"><strong>Company Code:</strong> ${companyCode}</p>
-                    <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
-                    <p style="margin: 5px 0;"><strong>Temporary Password:</strong> ${tempPassword}</p>
-                </div>
-                
-                <p style="color: #666; font-size: 14px;">
-                    Please login and change your password immediately.
-                </p>
-                
-                <div style="text-align: center; margin-top: 25px;">
-                    <a href="http://localhost:3000/login.html" 
-                       style="background-color: #137fec; color: white; padding: 12px 30px; 
-                              text-decoration: none; border-radius: 5px; font-weight: bold;">
-                        Login to Your Account
-                    </a>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 30px; color: #999; font-size: 12px;">
-                <p>&copy; 2026 ProjectPulse AI. All rights reserved.</p>
-                <p>This is an automated message, please do not reply.</p>
-            </div>
-        </div>
-    `;
-    
-    try {
-        await transporter.sendMail({
-            from: `"ProjectPulse AI" <${process.env.EMAIL_USER}>`,
-            to: email,
-            subject: subject,
-            html: html
-        });
-        console.log(`✅ Invitation email sent to ${email}`);
-        return true;
-    } catch (error) {
-        console.error('❌ Error sending invitation:', error);
-        return false;
-    }
-}
-
 // ==================== HEALTH CHECK ====================
 
 app.get('/api/health', (req, res) => {
     res.json({ 
         status: 'healthy', 
         timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV || 'development'
+        environment: process.env.NODE_ENV || 'development',
+        baseUrl: getBaseUrl(req)
     });
 });
 
@@ -1600,6 +1635,7 @@ app.listen(PORT, () => {
     console.log(`📁 Chats directory: ${CHATS_DIR}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`🤖 OpenAI: ${process.env.OPENAI_API_KEY ? 'Configured with new key' : 'Not configured'}`);
+    console.log(`📧 Email: ${process.env.EMAIL_USER ? 'Configured' : 'Not configured'}`);
     console.log(`\n📡 Endpoints:`);
     console.log(`   - Health: http://localhost:${PORT}/api/health`);
     console.log(`   - Auth: http://localhost:${PORT}/api/auth/*`);
